@@ -499,6 +499,24 @@ class Client():
     res = self._send_query(query)
     return res["data"]
 
+  def get_peers(self) -> dict:
+    """Gets the peers connected to the Mina Daemon
+    
+    Returns:
+        dict -- Returns the data field of the JSON Response as a Dict
+    """
+    query = '''
+    daemonStatus {
+      peers {
+        host
+        libp2pPort
+        peerId
+      }
+    }
+    '''
+    res = self._send_query(query)
+    return res["data"]
+    
   def set_current_snark_worker(self, worker_pk: str, fee: str) -> dict: 
     """Set the current SNARK Worker preference. 
     
@@ -775,5 +793,24 @@ class Client():
       }
     }
     ''' % num_blocks
+    res = self._send_query(query)
+    return res["data"]
+
+
+  def get_peers(self ) -> dict:
+    """Gets the Peers List.
+    
+    Returns:
+        dict -- Returns the "data" field of the JSON Response as a Dict.
+    """
+    query = '''
+    {
+      getPeers {
+        host
+        libp2pPort
+        peerId
+      }
+    }
+    '''
     res = self._send_query(query)
     return res["data"]
