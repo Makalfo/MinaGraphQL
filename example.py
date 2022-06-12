@@ -10,5 +10,7 @@ graphql_port = "3085"
 client = Client( graphql_host=graphql_host, graphql_port=graphql_port )
 
 # get the peers
-for peer in client.get_peers()['getPeers']:
+peers = client.get_peers()['getPeers']
+print( f"Collected {len(peers)} Peers")
+for peer in peers:
     print(peer)
